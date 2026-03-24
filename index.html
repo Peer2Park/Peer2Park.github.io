@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Peer2Park</title>
+    <meta
+        name="description"
+        content="Peer2Park helps drivers act on parking opportunities while they are still real."
+    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap"
+        rel="stylesheet"
+    >
+    <link rel="stylesheet" href="static/css/site.css">
+</head>
+<body>
+    <header class="shell-bar shell-bar-home">
+        <a class="shell-home" href="#top">
+            <img class="shell-logo" src="static/media/peer2park-mark.svg" alt="Peer2Park logo">
+            <span>Peer2Park</span>
+        </a>
+        <nav class="shell-nav" aria-label="Page">
+            <a class="shell-link" href="#live-signal">Live signal</a>
+            <a class="shell-link" href="#street-cases">Street cases</a>
+            <a class="shell-link" href="#how-it-works">How it works</a>
+            <a class="shell-link shell-link-strong" href="#decision-board">Why freshness matters</a>
+        </nav>
+    </header>
+
+    <main class="page-root" id="top">
+        <section class="signal-page">
+            <section class="signal-hero" id="live-signal">
+                <div class="signal-copy">
+                    <p class="eyebrow">Parking is a timing decision</p>
+                    <h1>Know if the next block is still worth the turn.</h1>
+                    <p class="lead">
+                        Peer2Park helps drivers act on parking opportunities while they are still real. Recent drive
+                        footage, computer vision, and community reports combine into a fresher read on whether a space
+                        seen moments ago is still worth heading toward now.
+                    </p>
+                    <div class="signal-scenarios" data-scenario-root>
+                        <div class="signal-tab-row" role="tablist" aria-label="Street situations">
+                            <button class="signal-tab is-active" type="button" data-scenario-button="campus" aria-selected="true">Campus turnover</button>
+                            <button class="signal-tab" type="button" data-scenario-button="lunch" aria-selected="false">Downtown lunch</button>
+                            <button class="signal-tab" type="button" data-scenario-button="evening" aria-selected="false">Evening exit</button>
+                        </div>
+                        <article class="signal-scenario-card" data-scenario-panel>
+                            <p class="eyebrow" data-scenario-label>Campus turnover</p>
+                            <h2 data-scenario-title>A lecture is ending and the lot is starting to clear.</h2>
+                            <p data-scenario-copy>
+                                A space was just seen opening near the engineering side of campus. The useful question
+                                is not whether parking exists somewhere. It is whether this opening is still worth the walk and the turn.
+                            </p>
+                            <div class="signal-metric-row">
+                                <div class="signal-metric">
+                                    <strong data-scenario-age>42 sec</strong>
+                                    <span>Report age</span>
+                                </div>
+                                <div class="signal-metric">
+                                    <strong data-scenario-distance>3 min</strong>
+                                    <span>Walk from curb</span>
+                                </div>
+                                <div class="signal-metric">
+                                    <strong data-scenario-window>7 min</strong>
+                                    <span>Window before traffic changes</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="cta-row">
+                        <a href="#decision-board" class="primary-cta">See why freshness matters</a>
+                        <a href="#street-cases" class="secondary-cta">Explore street situations</a>
+                    </div>
+                </div>
+                <div class="signal-stage" data-hero-stage>
+                    <div class="signal-stage-frame" data-parallax-card>
+                        <div class="video-panel signal-video">
+                            <div class="video-panel-label">Recent drive sample</div>
+                            <video
+                                class="site-video signal-video-media"
+                                playsinline
+                                webkit-playsinline
+                                muted
+                                loop
+                                autoplay
+                                preload="auto"
+                                disablepictureinpicture
+                                poster="static/media/timeline-2-poster.jpg"
+                            >
+                                <source src="static/media/timeline-2.mp4" type="video/mp4">
+                                Your browser could not play this video.
+                            </video>
+                            <div class="video-fallback signal-video-media" hidden data-video-fallback>
+                                Video failed to play in this browser preview. Open the file directly or switch preview browser.
+                            </div>
+                        </div>
+                        <div class="signal-scanline" aria-hidden="true"></div>
+                        <div class="signal-orb signal-orb-one" aria-hidden="true"></div>
+                        <div class="signal-orb signal-orb-two" aria-hidden="true"></div>
+                        <div class="signal-overlay signal-overlay-top" data-overlay-primary>Campus turnover</div>
+                        <div class="signal-overlay signal-overlay-bottom" data-overlay-secondary>42 sec old · engineering side</div>
+                    </div>
+                    <aside class="signal-photo-panel">
+                        <img
+                            class="signal-photo-media"
+                            src="static/media/photos/parking-grid.jpg"
+                            alt="An aerial view of a parking lot"
+                            data-scenario-photo
+                        >
+                        <div class="signal-photo-copy">
+                            <p class="eyebrow" data-scenario-photo-label>Street view</p>
+                            <h3 data-scenario-photo-title>Turnover starts when people move all at once.</h3>
+                            <p data-scenario-photo-copy>
+                                Class changes and short errands create the kind of brief parking windows that stale maps miss.
+                            </p>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <section class="signal-case-section" id="street-cases">
+                <div class="signal-section-head">
+                    <p class="eyebrow">What changes on the street</p>
+                    <h2>Peer2Park is useful when parking supply moves faster than people can evaluate it.</h2>
+                </div>
+                <div class="signal-case-grid">
+                    <article class="signal-case-card">
+                        <img class="signal-case-media" src="static/media/photos/downtown-curb.jpg" alt="Cars parked along a downtown curb">
+                        <div class="signal-case-copy">
+                            <strong>Downtown lunch churn</strong>
+                            <p>One curb lane can reset several times during a lunch hour. Drivers do not need perfect certainty. They need better timing.</p>
+                        </div>
+                    </article>
+                    <article class="signal-case-card">
+                        <img class="signal-case-media" src="static/media/photos/parking-grid.jpg" alt="An aerial view of a parking lot">
+                        <div class="signal-case-copy">
+                            <strong>Campus lot turnover</strong>
+                            <p>Short windows between classes create real openings, but those openings stop being useful quickly if the data does not stay fresh.</p>
+                        </div>
+                    </article>
+                    <article class="signal-case-card">
+                        <img class="signal-case-media" src="static/media/photos/twilight-curb.jpg" alt="A city street at dusk with parked cars">
+                        <div class="signal-case-copy">
+                            <strong>Evening arrivals</strong>
+                            <p>After-work and event traffic makes curb space unpredictable. A recent sighting can matter more than a polished static listing.</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="signal-process-section" id="how-it-works">
+                <div class="signal-section-head">
+                    <p class="eyebrow">How the signal becomes useful</p>
+                    <h2>Peer2Park is not trying to predict parking forever. It is trying to improve the next decision.</h2>
+                </div>
+                <div class="signal-process-grid">
+                    <article class="signal-process-card">
+                        <span class="signal-step">01</span>
+                        <h3>See the street as it changes</h3>
+                        <p>A normal drive creates recent visual context: which spaces looked occupied, which ones just cleared, and what the curb actually looked like.</p>
+                    </article>
+                    <article class="signal-process-card">
+                        <span class="signal-step">02</span>
+                        <h3>Turn that pass into signal</h3>
+                        <p>Computer vision and reporting logic help convert a drive-by into a structured update instead of leaving it as a vague impression.</p>
+                    </article>
+                    <article class="signal-process-card">
+                        <span class="signal-step">03</span>
+                        <h3>Rank by freshness, not just popularity</h3>
+                        <p>The best parking signal is often the one seen most recently, because curb conditions change faster than most parking apps acknowledge.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="signal-board-section" id="decision-board">
+                <div class="signal-board">
+                    <div class="signal-board-copy">
+                        <p class="eyebrow">Why freshness matters</p>
+                        <h2>The hardest part of parking is knowing whether the information is already old.</h2>
+                        <p>
+                            A map can show where parking exists in theory. Peer2Park is focused on a narrower problem:
+                            whether a recent opening is still actionable by the time the next driver gets there.
+                        </p>
+                        <p>
+                            That is why the page is built around motion, footage, and timing. The point is not to make parking
+                            look futuristic. The point is to make recent street evidence feel more useful than stale confidence.
+                        </p>
+                    </div>
+                    <div class="signal-board-timeline">
+                        <article class="signal-event">
+                            <strong>11:42:18</strong>
+                            <span>A car leaves the curb near the north entrance.</span>
+                        </article>
+                        <article class="signal-event">
+                            <strong>11:42:31</strong>
+                            <span>A passing driver captures the opening during an ordinary drive.</span>
+                        </article>
+                        <article class="signal-event">
+                            <strong>11:42:39</strong>
+                            <span>Detection and reporting logic surface the update while it is still useful.</span>
+                        </article>
+                        <article class="signal-event">
+                            <strong>11:43:07</strong>
+                            <span>The next driver decides whether that turn still makes sense.</span>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <script src="static/js/site.js"></script>
+</body>
+</html>
