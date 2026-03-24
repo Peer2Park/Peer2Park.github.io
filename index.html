@@ -3,84 +3,958 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Peer2Park</title>
-    <meta
-        name="description"
-        content="Peer2Park helps drivers act on parking opportunities while they are still real."
-    >
+    <title>Peer2Park — Option D: Immersive</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap"
-        rel="stylesheet"
-    >
-    <link rel="stylesheet" href="static/css/site.css">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800;900&family=Bebas+Neue&family=Cormorant+Garamond:wght@400;600;700&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Sora:wght@400;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/base.css">
 </head>
-<body>
+<body class="afterglow-stage peer-home">
     <header class="shell-bar shell-bar-home">
-        <a class="shell-home" href="#top">
-            <img class="shell-logo" src="static/media/peer2park-mark.svg" alt="Peer2Park logo">
+        <a class="shell-home" href="/">
+            <img class="shell-logo" src="/static/media/peer2park-mark.svg" alt="Peer2Park logo">
             <span>Peer2Park</span>
         </a>
         <nav class="shell-nav" aria-label="Page">
             <a class="shell-link" href="#live-signal">Live signal</a>
-            <a class="shell-link" href="#street-cases">Street cases</a>
-            <a class="shell-link" href="#how-it-works">How it works</a>
-            <a class="shell-link shell-link-strong" href="#decision-board">Why freshness matters</a>
+            <a class="shell-link" href="#problem-solution">The problem</a>
+            <a class="shell-link" href="#how">How it works</a>
+            <a class="shell-link shell-link-strong" href="#freshness">Why freshness matters</a>
         </nav>
     </header>
 
-    <main class="page-root" id="top">
-        <section class="signal-page">
-            <section class="signal-hero" id="live-signal">
-                <div class="signal-copy">
-                    <p class="eyebrow">Parking is a timing decision</p>
-                    <h1>Know if the next block is still worth the turn.</h1>
-                    <p class="lead">
-                        Peer2Park helps drivers act on parking opportunities while they are still real. Recent drive
-                        footage, computer vision, and community reports combine into a fresher read on whether a space
-                        seen moments ago is still worth heading toward now.
-                    </p>
-                    <div class="signal-scenarios" data-scenario-root>
-                        <div class="signal-tab-row" role="tablist" aria-label="Street situations">
-                            <button class="signal-tab is-active" type="button" data-scenario-button="campus" aria-selected="true">Campus turnover</button>
-                            <button class="signal-tab" type="button" data-scenario-button="lunch" aria-selected="false">Downtown lunch</button>
-                            <button class="signal-tab" type="button" data-scenario-button="evening" aria-selected="false">Evening exit</button>
+    <main class="page-root">
+        <style>
+        /* ── Option D: Immersive Full-Bleed ───────────────────────── */
+
+        .page-root > .od-page {
+            width: 100vw !important;
+            max-width: none !important;
+            margin: 0 !important;
+            margin-left: calc(-50vw + 50%) !important;
+        }
+        .page-root:has(.od-page) {
+            padding-top: 0;
+            padding-bottom: 0;
+            overflow-x: hidden;
+        }
+
+        .od-reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .od-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .od-reveal-delay-1 { transition-delay: 0.1s; }
+        .od-reveal-delay-2 { transition-delay: 0.2s; }
+        .od-reveal-delay-3 { transition-delay: 0.3s; }
+        .od-reveal-delay-4 { transition-delay: 0.4s; }
+
+        .od-page {
+            display: grid;
+            gap: 0;
+            background: #06080c;
+            color: #f0f0f5;
+        }
+
+        .od-hero {
+            position: relative;
+            min-height: 100vh;
+            display: grid;
+            align-content: center;
+            justify-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .od-hero-video {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .od-hero-video .video-panel {
+            border: none;
+            border-radius: 0;
+            aspect-ratio: auto;
+            width: 100%;
+            height: 100%;
+            background: #06080c;
+        }
+        .od-hero-video .video-panel-label { display: none; }
+        .od-hero-video .site-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.35;
+        }
+
+        .od-hero-scrim {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background:
+                radial-gradient(ellipse at 50% 60%, rgba(105, 217, 255, 0.07), transparent 60%),
+                linear-gradient(180deg, rgba(6, 8, 12, 0.3) 0%, transparent 30%, transparent 60%, #06080c 100%);
+            pointer-events: none;
+        }
+
+        .od-hero-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            gap: 24px;
+            justify-items: center;
+            padding: 0 24px;
+            max-width: 900px;
+        }
+
+        .od-hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 999px;
+            background: rgba(6, 8, 12, 0.7);
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .od-pulse {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #69d9ff;
+            box-shadow: 0 0 12px #69d9ff;
+            animation: odPulse 2s ease-in-out infinite;
+        }
+
+        .od-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3.2rem, 9vw, 8rem);
+            line-height: 0.9;
+            letter-spacing: -0.05em;
+            font-weight: 800;
+        }
+
+        .od-hero h1 em {
+            font-style: normal;
+            background: linear-gradient(135deg, #69d9ff 0%, #a78bfa 50%, #f472b6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .od-hero-sub {
+            max-width: 48ch;
+            font-size: clamp(1rem, 1.6vw, 1.25rem);
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .od-hero-ctas {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .od-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 30px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+        .od-btn:hover { transform: translateY(-2px); }
+
+        .od-btn-primary {
+            background: linear-gradient(135deg, #69d9ff, #a78bfa);
+            color: #06080c;
+            border: none;
+        }
+        .od-btn-primary:hover {
+            box-shadow: 0 12px 40px rgba(105, 217, 255, 0.35);
+        }
+
+        .od-btn-ghost {
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(6, 8, 12, 0.6);
+            color: #fff;
+        }
+
+        .od-scroll-hint {
+            position: absolute;
+            bottom: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-family: var(--font-mono);
+        }
+        .od-scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), transparent);
+            animation: odScrollPulse 2s ease-in-out infinite;
+        }
+
+        .od-stats-float {
+            position: relative;
+            z-index: 3;
+            margin-top: -80px;
+            padding: 0 24px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .od-stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            max-width: 900px;
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .od-stat {
+            text-align: center;
+            padding: 28px 16px;
+            background: rgba(6, 8, 12, 0.85);
+        }
+
+        .od-stat strong {
+            display: block;
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            background: linear-gradient(135deg, #69d9ff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .od-stat span {
+            display: block;
+            margin-top: 4px;
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .od-section-img {
+            position: relative;
+            min-height: 80vh;
+            display: grid;
+            align-content: center;
+            overflow: hidden;
+        }
+
+        .od-section-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .od-section-scrim {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .od-section-inner {
+            position: relative;
+            z-index: 2;
+            width: min(1200px, calc(100vw - 48px));
+            margin: 0 auto;
+            padding: 100px 0;
+        }
+
+        .od-problem-bg {
+            background-image: url("https://images.unsplash.com/photo-1716659305226-fbde44d7e36b?w=1920&q=80&auto=format");
+        }
+        .od-problem-scrim {
+            background:
+                linear-gradient(180deg, #06080c 0%, rgba(6, 8, 12, 0.78) 20%, rgba(6, 8, 12, 0.78) 80%, #06080c 100%);
+        }
+
+        .od-split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .od-eyebrow {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #69d9ff;
+            margin-bottom: 16px;
+        }
+
+        .od-split-layout h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            margin-bottom: 24px;
+        }
+
+        .od-problem-list,
+        .od-solution-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 16px;
+        }
+
+        .od-problem-list li,
+        .od-solution-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .od-problem-list .od-x {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: rgba(248, 113, 113, 0.15);
+            color: #f87171;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-top: 1px;
+        }
+
+        .od-solution-list .od-check {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: rgba(105, 217, 255, 0.12);
+            color: #69d9ff;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-top: 1px;
+        }
+
+        .od-solution {
+            position: relative;
+            overflow: hidden;
+            padding: 120px 0;
+        }
+
+        .od-solution-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse at 70% 40%, rgba(105, 217, 255, 0.07), transparent 50%),
+                radial-gradient(ellipse at 20% 70%, rgba(167, 139, 250, 0.05), transparent 50%),
+                #06080c;
+        }
+
+        .od-solution-inner {
+            position: relative;
+            z-index: 1;
+            width: min(1200px, calc(100vw - 48px));
+            margin: 0 auto;
+        }
+
+        .od-solution-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .od-solution-header h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            max-width: 16ch;
+            margin: 0 auto;
+        }
+
+        .od-solution-header h2 em {
+            font-style: normal;
+            background: linear-gradient(135deg, #69d9ff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .od-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .od-card {
+            position: relative;
+            padding: 32px 28px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            background: rgba(255, 255, 255, 0.03);
+            overflow: hidden;
+            transition: transform 300ms ease, border-color 300ms ease;
+        }
+
+        .od-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(105, 217, 255, 0.2);
+        }
+
+        .od-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(105, 217, 255, 0.4), transparent);
+            opacity: 0;
+            transition: opacity 300ms ease;
+        }
+        .od-card:hover::before { opacity: 1; }
+
+        .od-card-icon {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            margin-bottom: 20px;
+        }
+
+        .od-card-icon-blue { background: rgba(105, 217, 255, 0.1); border: 1px solid rgba(105, 217, 255, 0.15); }
+        .od-card-icon-purple { background: rgba(167, 139, 250, 0.1); border: 1px solid rgba(167, 139, 250, 0.15); }
+        .od-card-icon-green { background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.15); }
+
+        .od-card h3 { font-size: 1.2rem; margin-bottom: 10px; }
+        .od-card p { margin: 0; color: rgba(255, 255, 255, 0.5); line-height: 1.65; font-size: 0.95rem; }
+
+        .od-how-bg {
+            background-image: url("https://images.unsplash.com/photo-1733423328353-52146271439b?w=1920&q=80&auto=format");
+        }
+        .od-how-scrim {
+            background: linear-gradient(180deg, #06080c 0%, rgba(6, 8, 12, 0.84) 20%, rgba(6, 8, 12, 0.84) 80%, #06080c 100%);
+        }
+
+        .od-how-header { text-align: center; margin-bottom: 56px; }
+        .od-how-header h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+        }
+
+        .od-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .od-step {
+            padding: 36px 28px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(6, 8, 12, 0.75);
+            transition: transform 300ms ease;
+        }
+        .od-step:hover { transform: translateY(-4px); }
+
+        .od-step-num {
+            font-family: var(--font-display);
+            font-size: 3.4rem;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            background: linear-gradient(135deg, rgba(105, 217, 255, 0.3), rgba(167, 139, 250, 0.3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .od-step h3 { font-size: 1.25rem; margin-bottom: 12px; }
+        .od-step p { margin: 0; color: rgba(255, 255, 255, 0.5); line-height: 1.65; font-size: 0.95rem; }
+
+        .od-tech-bg {
+            background-image: url("https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=1920&q=80&auto=format");
+        }
+        .od-tech-scrim {
+            background: linear-gradient(180deg, #06080c 0%, rgba(6, 8, 12, 0.9) 20%, rgba(6, 8, 12, 0.9) 80%, #06080c 100%);
+        }
+
+        .od-tech-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .od-tech-copy h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            margin-bottom: 20px;
+        }
+
+        .od-tech-copy h2 em {
+            font-style: normal;
+            background: linear-gradient(135deg, #69d9ff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .od-tech-copy > p { color: rgba(255, 255, 255, 0.55); line-height: 1.72; font-size: 1.05rem; margin: 0; }
+
+        .od-tech-list { display: grid; gap: 16px; }
+
+        .od-tech-item {
+            display: grid;
+            grid-template-columns: 52px 1fr;
+            gap: 16px;
+            align-items: start;
+            padding: 20px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(6, 8, 12, 0.6);
+            transition: border-color 200ms ease;
+        }
+        .od-tech-item:hover { border-color: rgba(105, 217, 255, 0.15); }
+
+        .od-tech-item-icon {
+            width: 52px;
+            height: 52px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: rgba(105, 217, 255, 0.08);
+            border: 1px solid rgba(105, 217, 255, 0.12);
+        }
+
+        .od-tech-item h4 { font-size: 1rem; margin-bottom: 4px; }
+        .od-tech-item p { margin: 0; font-size: 0.88rem; color: rgba(255, 255, 255, 0.45); line-height: 1.6; }
+
+        .od-fresh-bg {
+            background-image: url("https://images.unsplash.com/photo-1493514789931-586cb221d7a7?w=1920&q=80&auto=format");
+        }
+        .od-fresh-scrim {
+            background:
+                linear-gradient(180deg, #06080c 0%, rgba(6, 8, 12, 0.87) 20%, rgba(6, 8, 12, 0.87) 80%, #06080c 100%);
+        }
+
+        .od-fresh-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .od-fresh-copy h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            margin-bottom: 20px;
+        }
+
+        .od-fresh-copy > p { color: rgba(255, 255, 255, 0.55); line-height: 1.72; font-size: 1.02rem; margin: 0 0 8px; }
+
+        .od-timeline { display: grid; gap: 0; position: relative; padding-left: 28px; }
+
+        .od-timeline::before {
+            content: "";
+            position: absolute;
+            left: 9px;
+            top: 20px;
+            bottom: 20px;
+            width: 2px;
+            background: linear-gradient(180deg, #69d9ff, #a78bfa, rgba(167, 139, 250, 0.2));
+            border-radius: 2px;
+        }
+
+        .od-tl-event { padding: 18px 0; position: relative; }
+
+        .od-tl-event::before {
+            content: "";
+            position: absolute;
+            left: -23px;
+            top: 26px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #69d9ff;
+            box-shadow: 0 0 12px rgba(105, 217, 255, 0.4);
+            z-index: 1;
+        }
+
+        .od-tl-event:nth-child(2)::before { background: #a78bfa; box-shadow: 0 0 12px rgba(167, 139, 250, 0.4); }
+        .od-tl-event:nth-child(3)::before { background: #34d399; box-shadow: 0 0 12px rgba(52, 211, 153, 0.4); }
+        .od-tl-event:nth-child(4)::before { background: #f472b6; box-shadow: 0 0 12px rgba(244, 114, 182, 0.4); }
+
+        .od-tl-time {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #69d9ff;
+            margin-bottom: 4px;
+            display: block;
+        }
+        .od-tl-event:nth-child(2) .od-tl-time { color: #a78bfa; }
+        .od-tl-event:nth-child(3) .od-tl-time { color: #34d399; }
+        .od-tl-event:nth-child(4) .od-tl-time { color: #f472b6; }
+
+        .od-tl-desc { font-size: 0.95rem; color: rgba(255, 255, 255, 0.65); line-height: 1.55; display: block; }
+
+        .od-video-section {
+            position: relative;
+            padding: 120px 0;
+            overflow: hidden;
+        }
+
+        .od-video-section-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 50% 50%, rgba(105, 217, 255, 0.05), transparent 60%),
+                #06080c;
+        }
+
+        .od-video-inner {
+            position: relative;
+            z-index: 1;
+            width: min(1200px, calc(100vw - 48px));
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .od-video-header { margin-bottom: 48px; }
+        .od-video-header h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            margin-bottom: 12px;
+        }
+        .od-video-header p { color: rgba(255, 255, 255, 0.5); font-size: 1.05rem; max-width: 48ch; margin: 0 auto; line-height: 1.6; }
+
+        .od-video-frame {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.06),
+                0 40px 120px rgba(0, 0, 0, 0.6);
+        }
+
+        .od-video-frame .video-panel { border: none; border-radius: 0; aspect-ratio: 16 / 9; width: 100%; }
+        .od-video-frame .video-panel-label { display: none; }
+        .od-video-frame .site-video { width: 100%; height: 100%; object-fit: cover; }
+
+        .od-video-glow {
+            position: absolute;
+            bottom: -50%;
+            left: 10%;
+            right: 10%;
+            height: 100%;
+            background: radial-gradient(ellipse, rgba(105, 217, 255, 0.12), transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .od-cta-bg {
+            background-image: url("https://images.unsplash.com/photo-1649307035604-ab3c5e5c9e7a?w=1920&q=80&auto=format");
+        }
+        .od-cta-scrim {
+            background:
+                radial-gradient(ellipse at 50% 50%, rgba(105, 217, 255, 0.08), transparent 50%),
+                linear-gradient(180deg, #06080c 0%, rgba(6, 8, 12, 0.82) 30%, rgba(6, 8, 12, 0.82) 70%, #06080c 100%);
+        }
+
+        .od-cta-content {
+            text-align: center;
+            display: grid;
+            gap: 20px;
+            justify-items: center;
+            padding: 80px 0;
+        }
+
+        .od-cta-content h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            line-height: 0.92;
+            letter-spacing: -0.05em;
+            max-width: 14ch;
+        }
+
+        .od-cta-content h2 em {
+            font-style: normal;
+            background: linear-gradient(135deg, #69d9ff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .od-cta-content > p { max-width: 44ch; color: rgba(255, 255, 255, 0.55); font-size: 1.1rem; line-height: 1.65; margin: 0; }
+
+        .od-ticker {
+            overflow: hidden;
+            padding: 16px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(6, 8, 12, 0.9);
+        }
+
+        .od-ticker-track {
+            display: flex;
+            width: max-content;
+            gap: 40px;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.35);
+            animation: odMarquee 35s linear infinite;
+        }
+
+        .od-ticker-track span { display: inline-flex; align-items: center; gap: 12px; white-space: nowrap; }
+
+        .od-ticker-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #69d9ff;
+            flex-shrink: 0;
+        }
+
+        @keyframes odPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.7); }
+        }
+
+        @keyframes odMarquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes odScrollPulse {
+            0%, 100% { opacity: 0.3; transform: scaleY(1); }
+            50% { opacity: 0.8; transform: scaleY(0.6); }
+        }
+
+        @media (max-width: 1000px) {
+            .od-split-layout { grid-template-columns: 1fr; gap: 48px; }
+            .od-cards { grid-template-columns: 1fr; }
+            .od-steps { grid-template-columns: 1fr; }
+            .od-tech-layout { grid-template-columns: 1fr; gap: 40px; }
+            .od-fresh-layout { grid-template-columns: 1fr; gap: 40px; }
+            .od-stats-row { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 640px) {
+            .od-stats-row { grid-template-columns: 1fr 1fr; }
+            .od-hero h1 { font-size: clamp(2.6rem, 12vw, 4.2rem); }
+            .od-stats-float { margin-top: -48px; }
+        }
+        </style>
+
+        <section class="od-page">
+            <section class="od-hero" id="live-signal">
+                <div class="od-hero-video">
+                    <div class="video-panel">
+                        <div class="video-panel-label"></div>
+                        <video
+                            class="site-video"
+                            playsinline
+                            webkit-playsinline
+                            muted
+                            loop
+                            autoplay
+                            preload="auto"
+                            disablepictureinpicture
+                            poster="/static/media/timeline-2-poster.jpg"
+                        >
+                            <source src="/static/media/timeline-2.mp4" type="video/mp4">
+                            Your browser could not play this video.
+                        </video>
+                        <div class="video-fallback" hidden data-video-fallback>
+                            Video failed to play in this browser preview. Open the file directly or switch preview browser.
                         </div>
-                        <article class="signal-scenario-card" data-scenario-panel>
-                            <p class="eyebrow" data-scenario-label>Campus turnover</p>
-                            <h2 data-scenario-title>A lecture is ending and the lot is starting to clear.</h2>
-                            <p data-scenario-copy>
-                                A space was just seen opening near the engineering side of campus. The useful question
-                                is not whether parking exists somewhere. It is whether this opening is still worth the walk and the turn.
-                            </p>
-                            <div class="signal-metric-row">
-                                <div class="signal-metric">
-                                    <strong data-scenario-age>42 sec</strong>
-                                    <span>Report age</span>
-                                </div>
-                                <div class="signal-metric">
-                                    <strong data-scenario-distance>3 min</strong>
-                                    <span>Walk from curb</span>
-                                </div>
-                                <div class="signal-metric">
-                                    <strong data-scenario-window>7 min</strong>
-                                    <span>Window before traffic changes</span>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="cta-row">
-                        <a href="#decision-board" class="primary-cta">See why freshness matters</a>
-                        <a href="#street-cases" class="secondary-cta">Explore street situations</a>
                     </div>
                 </div>
-                <div class="signal-stage" data-hero-stage>
-                    <div class="signal-stage-frame" data-parallax-card>
-                        <div class="video-panel signal-video">
-                            <div class="video-panel-label">Recent drive sample</div>
+                <div class="od-hero-scrim" aria-hidden="true"></div>
+
+                <div class="od-hero-content">
+                    <div class="od-hero-tag od-reveal">
+                        <span class="od-pulse"></span>
+                        On-device computer vision
+                    </div>
+                    <h1 class="od-reveal od-reveal-delay-1">
+                        Parking found<br>in <em>real time.</em>
+                    </h1>
+                    <p class="od-hero-sub od-reveal od-reveal-delay-2">
+                        Your dashcam becomes a parking sensor. On-device AI detects open spots
+                        as you drive and shares them before they disappear.
+                    </p>
+                    <div class="od-hero-ctas od-reveal od-reveal-delay-3">
+                        <a class="od-btn od-btn-primary" href="#how">
+                            See how it works
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <a class="od-btn od-btn-ghost" href="#freshness">Why freshness matters</a>
+                    </div>
+                </div>
+
+                <div class="od-scroll-hint">
+                    <span class="od-scroll-line"></span>
+                    scroll
+                </div>
+            </section>
+
+            <div class="od-stats-float od-reveal">
+                <div class="od-stats-row">
+                    <div class="od-stat"><strong>&lt;60s</strong><span>Report age</span></div>
+                    <div class="od-stat"><strong>94%</strong><span>AI accuracy</span></div>
+                    <div class="od-stat"><strong>~460m</strong><span>H3 precision</span></div>
+                    <div class="od-stat"><strong>20m</strong><span>Dedup radius</span></div>
+                </div>
+            </div>
+
+            <div class="od-ticker" style="margin-top: 60px;">
+                <div class="od-ticker-track">
+                    <span><span class="od-ticker-dot"></span> Spot detected 18s ago near Campus Ave</span>
+                    <span><span class="od-ticker-dot"></span> YOLO confidence 94%</span>
+                    <span><span class="od-ticker-dot"></span> 3 spaces freed on Main St</span>
+                    <span><span class="od-ticker-dot"></span> Community report: Lot B clearing</span>
+                    <span><span class="od-ticker-dot"></span> Freshness window: 7 min remaining</span>
+                    <span><span class="od-ticker-dot"></span> H3 cell resolution: ~460m</span>
+                    <span><span class="od-ticker-dot"></span> Spot detected 18s ago near Campus Ave</span>
+                    <span><span class="od-ticker-dot"></span> YOLO confidence 94%</span>
+                    <span><span class="od-ticker-dot"></span> 3 spaces freed on Main St</span>
+                    <span><span class="od-ticker-dot"></span> Community report: Lot B clearing</span>
+                    <span><span class="od-ticker-dot"></span> Freshness window: 7 min remaining</span>
+                    <span><span class="od-ticker-dot"></span> H3 cell resolution: ~460m</span>
+                </div>
+            </div>
+
+            <section class="od-section-img" id="problem-solution">
+                <div class="od-section-bg od-problem-bg"></div>
+                <div class="od-section-scrim od-problem-scrim"></div>
+                <div class="od-section-inner">
+                    <div class="od-split-layout">
+                        <div>
+                            <p class="od-eyebrow od-reveal" style="color: #f87171;">The problem</p>
+                            <h2 class="od-reveal od-reveal-delay-1">Parking apps show you where spots <em style="font-style: normal; color: #f87171;">were.</em></h2>
+                            <ul class="od-problem-list">
+                                <li class="od-reveal od-reveal-delay-1"><span class="od-x">&times;</span> Static maps show theoretical parking, not real availability</li>
+                                <li class="od-reveal od-reveal-delay-2"><span class="od-x">&times;</span> Data goes stale in seconds, apps update in minutes</li>
+                                <li class="od-reveal od-reveal-delay-3"><span class="od-x">&times;</span> No way to know if a spot is open when you arrive</li>
+                                <li class="od-reveal od-reveal-delay-4"><span class="od-x">&times;</span> Drivers circle blocks wasting time and fuel</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="od-eyebrow od-reveal" style="color: #69d9ff;">Peer2Park</p>
+                            <h2 class="od-reveal od-reveal-delay-1">Freshness over <em style="font-style: normal; color: #69d9ff;">prediction.</em></h2>
+                            <ul class="od-solution-list">
+                                <li class="od-reveal od-reveal-delay-1"><span class="od-check">&#x2713;</span> On-device YOLO AI detects spots from live dashcam footage</li>
+                                <li class="od-reveal od-reveal-delay-2"><span class="od-check">&#x2713;</span> Crowdsourced reports confirm availability in real time</li>
+                                <li class="od-reveal od-reveal-delay-3"><span class="od-check">&#x2713;</span> Spots ranked by recency, not popularity or distance</li>
+                                <li class="od-reveal od-reveal-delay-4"><span class="od-check">&#x2713;</span> H3 hex-grid indexing for precise geospatial accuracy</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="od-solution">
+                <div class="od-solution-bg"></div>
+                <div class="od-solution-inner">
+                    <div class="od-solution-header od-reveal">
+                        <p class="od-eyebrow">The solution</p>
+                        <h2>Built on <em>freshness,</em> not predictions.</h2>
+                    </div>
+                    <div class="od-cards">
+                        <article class="od-card od-reveal od-reveal-delay-1">
+                            <div class="od-card-icon od-card-icon-blue">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#69d9ff" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                            </div>
+                            <h3>On-device AI</h3>
+                            <p>YOLO11 and YOLOv26n-OBB run via Core ML. Your camera feed never leaves the device.</p>
+                        </article>
+                        <article class="od-card od-reveal od-reveal-delay-2">
+                            <div class="od-card-icon od-card-icon-purple">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            </div>
+                            <h3>Freshness-ranked</h3>
+                            <p>Spots sorted by recency, not popularity. The newest signal always surfaces first.</p>
+                        </article>
+                        <article class="od-card od-reveal od-reveal-delay-3">
+                            <div class="od-card-icon od-card-icon-green">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            </div>
+                            <h3>Crowdsourced</h3>
+                            <p>Every driver is a sensor. The more people drive, the fresher the data for everyone.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="od-video-section">
+                <div class="od-video-section-bg"></div>
+                <div class="od-video-inner">
+                    <div class="od-video-header od-reveal">
+                        <p class="od-eyebrow">Live capture</p>
+                        <h2>See the street through AI eyes.</h2>
+                        <p>Real dashcam footage processed by on-device computer vision in real time.</p>
+                    </div>
+                    <div class="od-video-frame od-reveal od-reveal-delay-1">
+                        <div class="video-panel">
+                            <div class="video-panel-label"></div>
                             <video
-                                class="site-video signal-video-media"
+                                class="site-video"
                                 playsinline
                                 webkit-playsinline
                                 muted
@@ -88,130 +962,156 @@
                                 autoplay
                                 preload="auto"
                                 disablepictureinpicture
-                                poster="static/media/timeline-2-poster.jpg"
+                                poster="/static/media/timeline-2-poster.jpg"
                             >
-                                <source src="static/media/timeline-2.mp4" type="video/mp4">
+                                <source src="/static/media/timeline-2.mp4" type="video/mp4">
                                 Your browser could not play this video.
                             </video>
-                            <div class="video-fallback signal-video-media" hidden data-video-fallback>
+                            <div class="video-fallback" hidden data-video-fallback>
                                 Video failed to play in this browser preview. Open the file directly or switch preview browser.
                             </div>
                         </div>
-                        <div class="signal-scanline" aria-hidden="true"></div>
-                        <div class="signal-orb signal-orb-one" aria-hidden="true"></div>
-                        <div class="signal-orb signal-orb-two" aria-hidden="true"></div>
-                        <div class="signal-overlay signal-overlay-top" data-overlay-primary>Campus turnover</div>
-                        <div class="signal-overlay signal-overlay-bottom" data-overlay-secondary>42 sec old · engineering side</div>
+                        <div class="od-video-glow"></div>
                     </div>
-                    <aside class="signal-photo-panel">
-                        <img
-                            class="signal-photo-media"
-                            src="static/media/photos/parking-grid.jpg"
-                            alt="An aerial view of a parking lot"
-                            data-scenario-photo
-                        >
-                        <div class="signal-photo-copy">
-                            <p class="eyebrow" data-scenario-photo-label>Street view</p>
-                            <h3 data-scenario-photo-title>Turnover starts when people move all at once.</h3>
-                            <p data-scenario-photo-copy>
-                                Class changes and short errands create the kind of brief parking windows that stale maps miss.
-                            </p>
-                        </div>
-                    </aside>
                 </div>
             </section>
 
-            <section class="signal-case-section" id="street-cases">
-                <div class="signal-section-head">
-                    <p class="eyebrow">What changes on the street</p>
-                    <h2>Peer2Park is useful when parking supply moves faster than people can evaluate it.</h2>
-                </div>
-                <div class="signal-case-grid">
-                    <article class="signal-case-card">
-                        <img class="signal-case-media" src="static/media/photos/downtown-curb.jpg" alt="Cars parked along a downtown curb">
-                        <div class="signal-case-copy">
-                            <strong>Downtown lunch churn</strong>
-                            <p>One curb lane can reset several times during a lunch hour. Drivers do not need perfect certainty. They need better timing.</p>
-                        </div>
-                    </article>
-                    <article class="signal-case-card">
-                        <img class="signal-case-media" src="static/media/photos/parking-grid.jpg" alt="An aerial view of a parking lot">
-                        <div class="signal-case-copy">
-                            <strong>Campus lot turnover</strong>
-                            <p>Short windows between classes create real openings, but those openings stop being useful quickly if the data does not stay fresh.</p>
-                        </div>
-                    </article>
-                    <article class="signal-case-card">
-                        <img class="signal-case-media" src="static/media/photos/twilight-curb.jpg" alt="A city street at dusk with parked cars">
-                        <div class="signal-case-copy">
-                            <strong>Evening arrivals</strong>
-                            <p>After-work and event traffic makes curb space unpredictable. A recent sighting can matter more than a polished static listing.</p>
-                        </div>
-                    </article>
-                </div>
-            </section>
-
-            <section class="signal-process-section" id="how-it-works">
-                <div class="signal-section-head">
-                    <p class="eyebrow">How the signal becomes useful</p>
-                    <h2>Peer2Park is not trying to predict parking forever. It is trying to improve the next decision.</h2>
-                </div>
-                <div class="signal-process-grid">
-                    <article class="signal-process-card">
-                        <span class="signal-step">01</span>
-                        <h3>See the street as it changes</h3>
-                        <p>A normal drive creates recent visual context: which spaces looked occupied, which ones just cleared, and what the curb actually looked like.</p>
-                    </article>
-                    <article class="signal-process-card">
-                        <span class="signal-step">02</span>
-                        <h3>Turn that pass into signal</h3>
-                        <p>Computer vision and reporting logic help convert a drive-by into a structured update instead of leaving it as a vague impression.</p>
-                    </article>
-                    <article class="signal-process-card">
-                        <span class="signal-step">03</span>
-                        <h3>Rank by freshness, not just popularity</h3>
-                        <p>The best parking signal is often the one seen most recently, because curb conditions change faster than most parking apps acknowledge.</p>
-                    </article>
-                </div>
-            </section>
-
-            <section class="signal-board-section" id="decision-board">
-                <div class="signal-board">
-                    <div class="signal-board-copy">
-                        <p class="eyebrow">Why freshness matters</p>
-                        <h2>The hardest part of parking is knowing whether the information is already old.</h2>
-                        <p>
-                            A map can show where parking exists in theory. Peer2Park is focused on a narrower problem:
-                            whether a recent opening is still actionable by the time the next driver gets there.
-                        </p>
-                        <p>
-                            That is why the page is built around motion, footage, and timing. The point is not to make parking
-                            look futuristic. The point is to make recent street evidence feel more useful than stale confidence.
-                        </p>
+            <section class="od-section-img" id="how">
+                <div class="od-section-bg od-how-bg"></div>
+                <div class="od-section-scrim od-how-scrim"></div>
+                <div class="od-section-inner">
+                    <div class="od-how-header od-reveal">
+                        <p class="od-eyebrow">How it works</p>
+                        <h2>From drive-by to decision in seconds.</h2>
                     </div>
-                    <div class="signal-board-timeline">
-                        <article class="signal-event">
-                            <strong>11:42:18</strong>
-                            <span>A car leaves the curb near the north entrance.</span>
+                    <div class="od-steps">
+                        <article class="od-step od-reveal od-reveal-delay-1">
+                            <div class="od-step-num">01</div>
+                            <h3>Drive captures the street</h3>
+                            <p>Your phone's camera passively records as you drive. No hardware, no setup. Just your commute.</p>
                         </article>
-                        <article class="signal-event">
-                            <strong>11:42:31</strong>
-                            <span>A passing driver captures the opening during an ordinary drive.</span>
+                        <article class="od-step od-reveal od-reveal-delay-2">
+                            <div class="od-step-num">02</div>
+                            <h3>AI spots the openings</h3>
+                            <p>YOLO models run on-device via Core ML, detecting spots with 94% confidence in real time.</p>
                         </article>
-                        <article class="signal-event">
-                            <strong>11:42:39</strong>
-                            <span>Detection and reporting logic surface the update while it is still useful.</span>
+                        <article class="od-step od-reveal od-reveal-delay-3">
+                            <div class="od-step-num">03</div>
+                            <h3>Nearby drivers decide fast</h3>
+                            <p>Fresh detections surface to drivers nearby, ranked by recency. The newer the signal, the better.</p>
                         </article>
-                        <article class="signal-event">
-                            <strong>11:43:07</strong>
-                            <span>The next driver decides whether that turn still makes sense.</span>
-                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="od-section-img" id="tech">
+                <div class="od-section-bg od-tech-bg"></div>
+                <div class="od-section-scrim od-tech-scrim"></div>
+                <div class="od-section-inner">
+                    <div class="od-tech-layout">
+                        <div class="od-tech-copy od-reveal">
+                            <p class="od-eyebrow">Under the hood</p>
+                            <h2>Real engineering, not <em>parking promises.</em></h2>
+                            <p>Built on proven ML models, serverless infrastructure, and privacy-first principles.</p>
+                        </div>
+                        <div class="od-tech-list">
+                            <div class="od-tech-item od-reveal od-reveal-delay-1">
+                                <div class="od-tech-item-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#69d9ff" stroke-width="2"><polygon points="12 2 19 7 19 17 12 22 5 17 5 7"/><line x1="12" y1="2" x2="12" y2="22"/></svg>
+                                </div>
+                                <div><h4>H3 hexagonal indexing</h4><p>Resolution-8 cells for geospatial queries and 20m deduplication.</p></div>
+                            </div>
+                            <div class="od-tech-item od-reveal od-reveal-delay-2">
+                                <div class="od-tech-item-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#69d9ff" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+                                </div>
+                                <div><h4>Intelligent navigation</h4><p>Apple Maps integration with voice search and hands-free guidance.</p></div>
+                            </div>
+                            <div class="od-tech-item od-reveal od-reveal-delay-3">
+                                <div class="od-tech-item-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#69d9ff" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                </div>
+                                <div><h4>Privacy-first</h4><p>All ML on-device. No raw footage shared. Only structured data leaves your phone.</p></div>
+                            </div>
+                            <div class="od-tech-item od-reveal od-reveal-delay-4">
+                                <div class="od-tech-item-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#69d9ff" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                                </div>
+                                <div><h4>Serverless backend</h4><p>AWS Lambda, DynamoDB, and API Gateway. Scales with every new driver.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="od-section-img" id="freshness">
+                <div class="od-section-bg od-fresh-bg"></div>
+                <div class="od-section-scrim od-fresh-scrim"></div>
+                <div class="od-section-inner">
+                    <div class="od-fresh-layout">
+                        <div class="od-fresh-copy od-reveal">
+                            <p class="od-eyebrow">Why freshness matters</p>
+                            <h2>Parking data has a half-life measured in seconds.</h2>
+                            <p>A spot seen 30 seconds ago is gold. The same spot reported 10 minutes ago is a guess. Peer2Park ranks by recency because curb conditions change faster than any prediction model.</p>
+                            <p>Every report carries a timestamp, a confidence score, and a decay window. You never act on stale data.</p>
+                        </div>
+                        <div class="od-timeline od-reveal od-reveal-delay-1">
+                            <article class="od-tl-event">
+                                <span class="od-tl-time">11:42:18 — Spot opens</span>
+                                <span class="od-tl-desc">A car pulls away near the north entrance. The space is empty.</span>
+                            </article>
+                            <article class="od-tl-event">
+                                <span class="od-tl-time">11:42:31 — AI detects</span>
+                                <span class="od-tl-desc">A passing driver's dashcam captures the opening. YOLO inference flags the vacancy.</span>
+                            </article>
+                            <article class="od-tl-event">
+                                <span class="od-tl-time">11:42:39 — Signal shared</span>
+                                <span class="od-tl-desc">Detection indexed to H3 cell, surfaced to nearby drivers while still fresh.</span>
+                            </article>
+                            <article class="od-tl-event">
+                                <span class="od-tl-time">11:43:07 — Parked</span>
+                                <span class="od-tl-desc">Driver 2 blocks away sees the signal, makes the turn, parks. 49 seconds total.</span>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="od-section-img">
+                <div class="od-section-bg od-cta-bg"></div>
+                <div class="od-section-scrim od-cta-scrim"></div>
+                <div class="od-section-inner">
+                    <div class="od-cta-content od-reveal">
+                        <p class="od-eyebrow">Join the network</p>
+                        <h2>Every driver makes parking <em>smarter.</em></h2>
+                        <p>Turn your commute into shared intelligence. The more people drive, the fresher the data gets for everyone.</p>
+                        <div class="od-hero-ctas">
+                            <a class="od-btn od-btn-primary" href="#">
+                                Get early access
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
         </section>
+
+        <script>
+        (function() {
+            var obs = new IntersectionObserver(function(entries) {
+                for (var i = 0; i < entries.length; i++) {
+                    if (entries[i].isIntersecting) {
+                        entries[i].target.classList.add("is-visible");
+                        obs.unobserve(entries[i].target);
+                    }
+                }
+            }, { threshold: 0.1 });
+            var els = document.querySelectorAll(".od-reveal");
+            for (var i = 0; i < els.length; i++) obs.observe(els[i]);
+        })();
+        </script>
     </main>
 
-    <script src="static/js/site.js"></script>
+    <script src="/static/js/site.js"></script>
 </body>
 </html>
