@@ -1,61 +1,46 @@
 <svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="pinOuter" x1="512" y1="120" x2="512" y2="450" gradientUnits="userSpaceOnUse">
+    <linearGradient id="pin" x1="512" y1="160" x2="512" y2="580" gradientUnits="userSpaceOnUse">
       <stop stop-color="#7BE7FF"/>
-      <stop offset="0.48" stop-color="#3FA6FF"/>
+      <stop offset="0.55" stop-color="#3FA6FF"/>
       <stop offset="1" stop-color="#1E54DA"/>
     </linearGradient>
-    <linearGradient id="pinInner" x1="512" y1="188" x2="512" y2="395" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#F7FCFF"/>
-      <stop offset="1" stop-color="#A8D8FF"/>
+    <linearGradient id="base" x1="214" y1="610" x2="810" y2="840" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2864E4"/>
+      <stop offset="1" stop-color="#0F2F9D"/>
     </linearGradient>
-    <linearGradient id="carBody" x1="342" y1="420" x2="682" y2="640" gradientUnits="userSpaceOnUse">
+    <linearGradient id="car" x1="340" y1="420" x2="680" y2="640" gradientUnits="userSpaceOnUse">
       <stop stop-color="#FFFFFF"/>
-      <stop offset="1" stop-color="#D7E9FF"/>
+      <stop offset="1" stop-color="#DEEBFF"/>
     </linearGradient>
-    <linearGradient id="carGlass" x1="395" y1="395" x2="630" y2="470" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#285BDB"/>
-      <stop offset="1" stop-color="#122B8C"/>
+    <linearGradient id="rail" x1="230" y1="330" x2="230" y2="570" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7FCFF"/>
+      <stop offset="1" stop-color="#C5E4FF"/>
     </linearGradient>
-    <linearGradient id="basePlate" x1="214" y1="616" x2="810" y2="860" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#1D54E2"/>
-      <stop offset="0.52" stop-color="#214DDD"/>
-      <stop offset="1" stop-color="#102F9D"/>
-    </linearGradient>
-    <linearGradient id="railGlow" x1="222" y1="274" x2="807" y2="542" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#F9FDFF"/>
-      <stop offset="1" stop-color="#B5E9FF"/>
-    </linearGradient>
-    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="10" result="blur"/>
-      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0.23 0 1 0 0 0.68 0 0 1 0 1 0 0 0 0.30 0"/>
-    </filter>
   </defs>
 
-  <g filter="url(#softGlow)">
-    <path d="M512 176C430 176 364 243 364 324C364 383 403 436 512 567C621 436 660 383 660 324C660 243 594 176 512 176Z" fill="url(#pinOuter)"/>
-  </g>
+  <!-- Blue isometric base plate -->
+  <path d="M214 608L512 744L810 608L512 476Z" fill="#EAF4FF"/>
+  <path d="M246 640L512 820L778 640L512 500Z" fill="url(#base)"/>
 
-  <path d="M512 164C426 164 356 233 356 319C356 381 399 437 512 580C625 437 668 381 668 319C668 233 598 164 512 164Z" fill="url(#pinOuter)" stroke="#8CEFFF" stroke-width="10"/>
-  <circle cx="512" cy="306" r="83" fill="url(#pinInner)" stroke="#0F44B9" stroke-width="10"/>
-  <path d="M488 260H530C561 260 582 282 582 311C582 338 561 358 530 358H524V406H488V260ZM524 327H530C541 327 547 321 547 311C547 300 541 292 530 292H524V327Z" fill="#0F44B9"/>
+  <!-- Signal waves -->
+  <path d="M398 686C448 654 576 654 626 686" stroke="#69E6FF" stroke-width="20" stroke-linecap="round" fill="none"/>
+  <path d="M434 722C470 700 554 700 590 722" stroke="#69E6FF" stroke-width="18" stroke-linecap="round" fill="none"/>
+  <path d="M472 756C490 746 534 746 552 756" stroke="#69E6FF" stroke-width="16" stroke-linecap="round" fill="none"/>
 
-  <path d="M302 330C263 330 232 361 232 400V536C232 556 248 572 268 572C288 572 304 556 304 536V406H372C392 406 408 390 408 370C408 348 390 330 372 330H302Z" fill="url(#railGlow)" stroke="#3CA6FF" stroke-width="10"/>
-  <path d="M722 330C761 330 792 361 792 400V536C792 556 776 572 756 572C736 572 720 556 720 536V406H652C632 406 616 390 616 370C616 348 634 330 652 330H722Z" fill="url(#railGlow)" stroke="#3CA6FF" stroke-width="10"/>
+  <!-- Side rails -->
+  <path d="M300 330C266 330 240 356 240 390V544C240 562 254 576 272 576C290 576 304 562 304 544V406H374C392 406 406 392 406 374C406 356 392 342 374 342H300Z" fill="url(#rail)"/>
+  <path d="M724 330C758 330 784 356 784 390V544C784 562 770 576 752 576C734 576 720 562 720 544V406H650C632 406 618 392 618 374C618 356 632 342 650 342H724Z" fill="url(#rail)"/>
 
-  <path d="M214 608L512 744L810 608L730 566H294L214 608Z" fill="#F7FCFF" stroke="#2F84F4" stroke-width="10"/>
-  <path d="M246 642L512 820L778 642L730 622L512 760L294 622L246 642Z" fill="url(#basePlate)" stroke="#63DFFF" stroke-width="10"/>
+  <!-- Car body -->
+  <path d="M400 416H624L658 488H366L400 416Z" fill="#2B5ED9"/>
+  <rect x="352" y="488" width="320" height="140" rx="26" fill="url(#car)"/>
+  <circle cx="408" cy="536" r="24" fill="#1E54DA"/>
+  <circle cx="616" cy="536" r="24" fill="#1E54DA"/>
+  <rect x="468" y="540" width="88" height="10" rx="5" fill="#1E54DA"/>
 
-  <path d="M398 410H626L662 486H362L398 410Z" fill="url(#carGlass)" stroke="#1537A4" stroke-width="10"/>
-  <rect x="348" y="486" width="328" height="142" rx="28" fill="url(#carBody)" stroke="#1D43B8" stroke-width="10"/>
-  <path d="M362 572H662" stroke="#1D43B8" stroke-width="10"/>
-  <path d="M462 542H562" stroke="#1D43B8" stroke-width="16" stroke-linecap="round"/>
-  <circle cx="404" cy="532" r="28" fill="#1E54DA" stroke="#0F2E97" stroke-width="10"/>
-  <circle cx="620" cy="532" r="28" fill="#1E54DA" stroke="#0F2E97" stroke-width="10"/>
-  <ellipse cx="363" cy="466" rx="26" ry="16" fill="#F7FCFF" stroke="#63DFFF" stroke-width="8"/>
-  <ellipse cx="661" cy="466" rx="26" ry="16" fill="#F7FCFF" stroke="#63DFFF" stroke-width="8"/>
-
-  <path d="M402 670C456 632 568 632 622 670" stroke="#69E6FF" stroke-width="26" stroke-linecap="round"/>
-  <path d="M432 712C470 688 554 688 592 712" stroke="#69E6FF" stroke-width="24" stroke-linecap="round"/>
-  <path d="M470 754C490 742 534 742 554 754" stroke="#69E6FF" stroke-width="22" stroke-linecap="round"/>
+  <!-- Pin -->
+  <path d="M512 164C424 164 352 235 352 324C352 390 402 452 512 584C622 452 672 390 672 324C672 235 600 164 512 164Z" fill="url(#pin)"/>
+  <circle cx="512" cy="308" r="84" fill="#F5FBFF"/>
+  <path d="M484 258H530C562 258 584 281 584 312C584 341 562 362 530 362H520V408H484V258ZM520 331H530C542 331 548 324 548 313C548 301 542 294 530 294H520V331Z" fill="#1E54DA"/>
 </svg>
